@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { NotaSimulado } from "./api/api";
 
 function App() {
 
@@ -6,13 +7,13 @@ function App() {
   const [notas, setNotas] = useState({})
 
   useEffect(() => {
-    try {
-      fetch('https://script.google.com/macros/s/AKfycbwfpNvq40kYSEUxOoXjKGZOYe9wLwMtXAXPq7hbfQWwTPq6u2B5zDQ8AmDs-s6HmhH8sg/exec?edsas=1sas')
-      .then(response => response.json())
-      .then(json => setData(json.data))
-    } catch(e) {
-      console.log(e)
-    }
+    // try {
+    //   fetch('https://script.google.com/macros/s/AKfycbwfpNvq40kYSEUxOoXjKGZOYe9wLwMtXAXPq7hbfQWwTPq6u2B5zDQ8AmDs-s6HmhH8sg/exec?edsas=1sas')
+    //   .then(response => response.json())
+    //   .then(json => setData(json.data))
+    // } catch(e) {
+    //   console.log(e)
+    // }
   }, []);
 
   function handleNotas(value) {
@@ -43,6 +44,8 @@ function App() {
   <p>Matemática: {notas['mat']}</p>
   <p>Humanas: {notas['ch']}</p>
   <p>Natureza: {notas['ch']}</p>
+
+    {NotaSimulado('1sas')}
   </>
   )
 }
