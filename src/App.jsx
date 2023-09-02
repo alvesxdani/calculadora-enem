@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
-import { NotaSimulado } from "./api/api";
+import './index.css'
+import Header from "./components/Header/Header";
+import fetchData from "./api/api";
 
 function App() {
 
@@ -7,17 +9,12 @@ function App() {
   const [notas, setNotas] = useState({})
 
   useEffect(() => {
-    // try {
-    //   fetch('https://script.google.com/macros/s/AKfycbwfpNvq40kYSEUxOoXjKGZOYe9wLwMtXAXPq7hbfQWwTPq6u2B5zDQ8AmDs-s6HmhH8sg/exec?edsas=1sas')
-    //   .then(response => response.json())
-    //   .then(json => setData(json.data))
-    // } catch(e) {
-    //   console.log(e)
-    // }
+     fetchData('1sas')
+     .then((response) => setData(response))
   }, []);
 
-  function handleNotas(value) {
-    console.log(value)
+
+  function handleInfoAluno(value) {
     data.filter(item => {
       item.nome === value ? setNotas({
         'ling': item.ling,
@@ -29,24 +26,75 @@ function App() {
   }
 
   return (
-  <>
-  <label htmlFor="name">Nome do(a) aluno(a): </label>
-  <select id="name" onChange={({target}) => handleNotas(target.value)}>
-    {data && data.map((item, index) => {
-      return (
-        <option id="name" key={index} value={item.nome} defaultValue="">{item.nome}</option>
-      )
-    })}
+    <>
+    <Header ano={2023} />
 
-  </select>
+    <main>
 
-  <p>Linguagens: {notas['ling']}</p>
-  <p>Matemática: {notas['mat']}</p>
-  <p>Humanas: {notas['ch']}</p>
-  <p>Natureza: {notas['ch']}</p>
+      <div className="my-0 mx-auto w-4 border rounded-sm">
+        aa
+      </div>
 
-    {NotaSimulado('1sas')}
-  </>
+    {/* <label htmlFor="name">Nome do(a) aluno(a): </label>
+      <select id="name" onChange={({ target }) => handleInfoAluno(target.value)}>
+        {data && data.map((item, index) => {
+          return (
+            <option id="name" key={index} value={item.nome} defaultValue="">{item.nome}</option>
+          )
+        })}
+
+      </select>
+
+      <table className="table-auto">
+
+        <thead>
+          <tr>
+            <th align="center" colSpan={4}>1º Simulado</th>
+          </tr>
+
+          <tr>
+            <th>
+              LING
+            </th>
+
+            <th>
+              MAT
+            </th>
+
+            <th>
+              CH
+            </th>
+
+            <th>
+              CN
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              {notas['ling']}
+            </td>
+
+            <td>
+              {notas['mat']}
+            </td>
+
+            <td>
+              {notas['ch']}
+            </td>
+
+            <td>
+              {notas['cn']}
+            </td>
+          </tr>
+        </tbody>
+      </table> */}
+    </main>
+      
+
+    </>
   )
 }
 

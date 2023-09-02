@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+}
+
+a {
+    color: theme('colors.light-grey');
+}
+
+a:hover {
+    text-decoration: underline;
+}
