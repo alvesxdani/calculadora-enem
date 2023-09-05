@@ -1,7 +1,7 @@
 const Tables = (simulado) => {
     return (
         <>
-        <table className="custom-table border table-auto w-[100%] mb-5">
+        <table className="custom-table border table-auto w-[100%] mb-8 bg-[#eee3]">
                 <thead>
                     <tr>
                         <th align="center" colSpan={4}>{simulado.num}º Simulado</th>
