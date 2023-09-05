@@ -1,17 +1,15 @@
 import axios from "axios";
 
-const fetchData = async (edSimulado) => {
-    let data;
+const fetchData = async () => {
+  const api = 'https://script.google.com/macros/s/AKfycbwfpNvq40kYSEUxOoXjKGZOYe9wLwMtXAXPq7hbfQWwTPq6u2B5zDQ8AmDs-s6HmhH8sg/exec'
+  const simulado1 = await axios.get(`${api}?edsas=1sas`).then(response => response.data.data)
+  const simulado2 = await axios.get(`${api}?edsas=2sas`).then(response => response.data.data)
+  const simulado3 = await axios.get(`${api}?edsas=3sas`).then(response => response.data.data)
+  const simulado4 = await axios.get(`${api}?edsas=4sas`).then(response => response.data.data)
+  const simulado5 = await axios.get(`${api}?edsas=5sas`).then(response => response.data.data)
+  const simulado6 = await axios.get(`${api}?edsas=6sas`).then(response => response.data.data)
 
-    try {
-      const response = await axios.get(`https://script.google.com/macros/s/AKfycbwfpNvq40kYSEUxOoXjKGZOYe9wLwMtXAXPq7hbfQWwTPq6u2B5zDQ8AmDs-s6HmhH8sg/exec?edsas=${edSimulado}`)
-      data = await response.data.data;
-    }
-    catch (e) {
-      console.log(e)
-    }
-
-    return data;
+  return [simulado1, simulado2, simulado3, simulado4, simulado5, simulado6];
   }
 
   export default fetchData

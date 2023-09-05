@@ -6,19 +6,84 @@ import Tables from "./components/Tables/Tables";
 
 function App() {
 
-  const [data, setData] = useState(null)
-  const [info, setInfo] = useState({})
+  const [data, setData] = useState([])
+  const [turma, setTurma] = useState(null)
+  const [simulado1, setSimulado1] = useState({})
+  const [simulado2, setSimulado2] = useState({})
+  const [simulado3, setSimulado3] = useState({})
+  const [simulado4, setSimulado4] = useState({})
+  const [simulado5, setSimulado5] = useState({})
+  const [simulado6, setSimulado6] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchData('1sas')
-      .then((response) => setData(response))
+    setLoading(true)
+
+    fetchData()
+      .then(response => {
+        setData(response)
+      })
+      .catch(e => console.log(e))
+      .finally(() => {
+        setLoading(false)
+      })
   }, []);
 
 
   function handleInfoAluno(value) {
-    data.filter(item => {
-      item.nome === value ? setInfo({
-        'turma': item.turma,
+    data[0].filter(item => {
+      item.nome === value ? setSimulado1({
+        'turma': setTurma(item.turma),
+        'ling': item.ling.toFixed(1),
+        'mat': item.mat.toFixed(1),
+        'ch': item.ch.toFixed(1),
+        'cn': item.cn.toFixed(1)
+      }) : null
+    })
+
+    data[1].filter(item => {
+      item.nome === value ? setSimulado2({
+        'turma': setTurma(item.turma),
+        'ling': item.ling.toFixed(1),
+        'mat': item.mat.toFixed(1),
+        'ch': item.ch.toFixed(1),
+        'cn': item.cn.toFixed(1)
+      }) : null
+    })
+
+    data[2].filter(item => {
+      item.nome === value ? setSimulado3({
+        'turma': setTurma(item.turma),
+        'ling': item.ling.toFixed(1),
+        'mat': item.mat.toFixed(1),
+        'ch': item.ch.toFixed(1),
+        'cn': item.cn.toFixed(1)
+      }) : null
+    })
+
+    data[3].filter(item => {
+      item.nome === value ? setSimulado4({
+        'turma': setTurma(item.turma),
+        'ling': item.ling.toFixed(1),
+        'mat': item.mat.toFixed(1),
+        'ch': item.ch.toFixed(1),
+        'cn': item.cn.toFixed(1)
+      }) : null
+    })
+
+    data[4].filter(item => {
+      item.nome === value ? setSimulado5({
+        'turma': setTurma(item.turma),
+        'ling': item.ling.toFixed(1),
+        'mat': item.mat.toFixed(1),
+        'ch': item.ch.toFixed(1),
+        'cn': item.cn.toFixed(1)
+      }) : null
+    })
+
+    data[5].filter(item => {
+      item.nome === value ? setSimulado6({
+        'turma': setTurma(item.turma),
         'ling': item.ling.toFixed(1),
         'mat': item.mat.toFixed(1),
         'ch': item.ch.toFixed(1),
@@ -36,25 +101,34 @@ function App() {
         <div className="container max-w-[700px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey">
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between mb-4 align-middle">
             <label htmlFor="name" className="font-bold">Nome do(a) aluno(a): </label>
-            <select
+            
+            {loading && <span>Carregando...</span>}
+
+            {!loading && <select
               id="name"
               className="border rounded-sm p-1"
               onChange={({ target }) => handleInfoAluno(target.value)}
             >
-              {data && data.map((item, index) => {
+              {data[0] && data[0].map((item, index) => {
                 return (
                   <option id="name" key={index} value={item.nome}>{item.nome}</option>
                 )
               })}
 
             </select>
+            }
           </div>
 
           <div className="mb-4">
-            <span className="font-bold">Turma</span>: {info['turma']}
+            <span className="font-bold">Turma</span>: {turma}
           </div>
 
-          <Tables {...info}/>
+          <Tables {...simulado1} num={1} />
+          <Tables {...simulado2} num={2} />
+          <Tables {...simulado3} num={3} />
+          <Tables {...simulado4} num={4} />
+          <Tables {...simulado5} num={5} />
+          <Tables {...simulado6} num={6} />
         </div>
       </main>
 

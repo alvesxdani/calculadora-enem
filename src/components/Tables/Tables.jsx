@@ -1,10 +1,10 @@
-const Tables = (info) => {
+const Tables = (simulado) => {
     return (
         <>
-            <table className="custom-table border table-auto w-[100%]">
+        <table className="custom-table border table-auto w-[100%] mb-5">
                 <thead>
                     <tr>
-                        <th align="center" colSpan={4}>1º Simulado</th>
+                        <th align="center" colSpan={4}>{simulado.num}º Simulado</th>
                     </tr>
 
                     <tr>
@@ -28,19 +28,19 @@ const Tables = (info) => {
                 <tbody>
                     <tr>
                         <td>
-                            {info['ling']}
+                            {simulado && simulado['ling']}
                         </td>
 
                         <td>
-                            {info['mat']}
+                            {simulado && simulado['mat']}
                         </td>
 
                         <td>
-                            {info['ch']}
+                            {simulado && simulado['ch']}
                         </td>
 
                         <td>
-                            {info['cn']}
+                            {simulado && simulado['cn']}
                         </td>
                     </tr>
                 </tbody>
