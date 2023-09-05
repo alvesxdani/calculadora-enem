@@ -28,19 +28,19 @@ const Tables = (simulado) => {
                 <tbody>
                     <tr>
                         <td>
-                            {simulado && simulado['ling']}
+                            {simulado['ling'] ? simulado['ling']: 0}
                         </td>
 
                         <td>
-                            {simulado && simulado['mat']}
+                            {simulado['mat'] ? simulado['mat'] : 0}
                         </td>
 
                         <td>
-                            {simulado && simulado['ch']}
+                            {simulado['ch'] ? simulado['ch'] : 0}
                         </td>
 
                         <td>
-                            {simulado && simulado['cn']}
+                            {simulado['cn'] ? simulado['cn'] : 0}
                         </td>
                     </tr>
                 </tbody>

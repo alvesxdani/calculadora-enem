@@ -98,7 +98,7 @@ function App() {
 
       <main className="p-2">
 
-        <div className="container max-w-[700px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey">
+        <div className="container max-w-[600px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey">
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between mb-4 align-middle">
             <label htmlFor="name" className="font-bold">Nome do(a) aluno(a): </label>
             
