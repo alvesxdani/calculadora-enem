@@ -15,10 +15,14 @@ a:hover {
     text-decoration: underline;
 }
 
-.custom-table tr {
+table {
+    border: 1px solid #eee;
+}
+
+tr {
     border-bottom: 1px solid #eee;
 }
 
-.custom-table tbody {
+tbody {
     text-align: center;
 }
