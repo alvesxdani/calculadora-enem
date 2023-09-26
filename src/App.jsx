@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import Header from "./components/Header/Header";
-import fetchData from "./api/api";
+import fetchData, { fetchDataCourses } from "./api/api";
 import Tables from "./components/Tables/Tables";
+import CoursesTable from "./components/CoursesTable/CoursesTable";
 
 function App() {
   const [data, setData] = useState([]);
+  const [dataCourses, setDataCourses] = useState([]);
   const [turma, setTurma] = useState(null);
   const [simulado1, setSimulado1] = useState({});
   const [simulado2, setSimulado2] = useState({});
@@ -13,20 +15,33 @@ function App() {
   const [simulado4, setSimulado4] = useState({});
   const [simulado5, setSimulado5] = useState({});
   const [simulado6, setSimulado6] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
+  const [loadingCourses, setLoadingCourses] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadingData(true);
+    setLoadingCourses(true);
 
     fetchData()
       .then((response) => {
         setData(response);
       })
-      .catch((e) => console.log(e))
+      .catch((e) => console.error(e))
       .finally(() => {
-        setLoading(false);
+        setLoadingData(false);
+      });
+
+    fetchDataCourses()
+      .then((response) => {
+        setDataCourses(response);
+      })
+      .catch((e) => console.error(e))
+      .finally(() => {
+        setLoadingCourses(false);
       });
   }, []);
+  
+  const courses = dataCourses.map(item => item['CURSO'])
 
   function handleInfoAluno(value) {
     data[0].filter((item) => {
@@ -107,46 +122,61 @@ function App() {
       <Header ano={2023} />
 
       <main className="p-2">
-        <div
-          className="container flex flex-wrap max-w-[1064px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey"
-        >
+        <div className="container flex flex-wrap max-w-[1064px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey">
           <div className="flex flex-col gap-3 justify-around mb-4 align-middle w-[100%]">
-            
-            <div className="flex gap-3">
-            <label htmlFor="name" className="font-bold">
-              Nome do(a) aluno(a):{" "}
-            </label>
+            <div className="flex gap-3 align-middle">
+              <label htmlFor="name" className="font-bold">
+                Nome do(a) aluno(a):{" "}
+              </label>
 
-            {loading && <span>Carregando...</span>}
-
-            {!loading && (
-              <select
-                id="name"
-                className="border rounded-sm p-1 grow"
-                onChange={({ target }) => handleInfoAluno(target.value)}
-              >
-                {data[0] &&
-                  data[0].map((item, index) => {
-                    return (
-                      <option id="name" key={index} value={item.nome}>
-                        {item.nome}
-                      </option>
-                    );
-                  })}
-              </select>
-            )}
+              {loadingData ? (
+                <span>Carregando...</span>
+              ) : (
+                <select
+                  id="name"
+                  className="border rounded-sm p-1 grow"
+                  onChange={({ target }) => handleInfoAluno(target.value)}
+                >
+                  {data[0] &&
+                    data[0].map((item, index) => {
+                      return (
+                        <option id="name" key={index} value={item.nome}>
+                          {item.nome}
+                        </option>
+                      );
+                    })}
+                </select>
+              )}
             </div>
 
             <div className="">
               <span className="font-bold">Turma</span>: {turma}
             </div>
 
-            <div>
-            <span className="font-bold">Curso</span>:
+            <div className="flex gap-3 align-middle">
+              <span className="font-bold">Curso:</span>
+
+              {loadingCourses ? (
+                <span>Carregando...</span>
+              ) : (
+                <select
+                  id="course"
+                  className="border rounded-sm p-1 grow"
+                >
+
+                  {/* {dataCourses.map((item, index) => (
+                    <option key={index} value={item['CURSO']}>{item['CURSO']}</option>
+                  ))} */}
+
+                  
+                  
+                </select>
+              )}
+              
             </div>
           </div>
 
-          <div className="w-[50%] mr-1">
+          <div className="w-[50%] pr-3">
             <Tables {...simulado1} num={1} />
             <Tables {...simulado2} num={2} />
             <Tables {...simulado3} num={3} />
@@ -155,10 +185,9 @@ function App() {
             <Tables {...simulado6} num={6} />
           </div>
 
-          <div className="w-[40%]">
-            Teste
+          <div className="w-[50%]">
+            <CoursesTable />
           </div>
-
         </div>
       </main>
     </>

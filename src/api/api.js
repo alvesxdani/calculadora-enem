@@ -12,4 +12,11 @@ const fetchData = async () => {
   return [simulado1, simulado2, simulado3, simulado4, simulado5, simulado6];
   }
 
-  export default fetchData
+export const fetchDataCourses = async () => {
+  const api = 'https://script.google.com/macros/s/AKfycbxa9j5pF5qpRwNyB-uMQiOWDzEcAAwYNuGML7VHy4r0ecg8OvZB7V8_4wdR3ulwdTas/exec'
+  const dataCourses = await axios.get(`${api}?data=notascorte`).then(response => response.data.data)
+
+  return dataCourses;
+}
+
+export default fetchData
