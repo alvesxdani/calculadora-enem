@@ -7,6 +7,7 @@ import TablesNotes from "./components/TablesNotes/TablesNotes";
 
 function App() {
   const [data, setData] = useState([]);
+  const [course, setCourse] = useState([]);
   const [dataCourses, setDataCourses] = useState([]);
   const [turma, setTurma] = useState(null);
   const [simulado1, setSimulado1] = useState({});
@@ -124,6 +125,18 @@ function App() {
     });
   }
 
+  function handleCourse(value) {
+    dataCourses.filter((item) => {
+      item['curso'] === value
+        ? setCourse(prev => [...prev,{
+          ies: item.ies,
+          nota: item.notasCorte.toFixed(1)
+        }]) : null
+    })
+
+    
+  }
+
   return (
     <>
       <Header ano={2023} />
@@ -169,6 +182,7 @@ function App() {
                 <select
                   id="course"
                   className="border rounded-sm p-1 grow"
+                  onChange={({target}) => handleCourse(target.value)}
                 >
                   {courses.map((item, index) => (
                     <option key={index}>{item}</option>
@@ -189,7 +203,7 @@ function App() {
           </div>
 
           <div className="w-[50%]">
-            <CoursesTable />
+            <CoursesTable course={course}/>
           </div>
         </div>
       </main>
