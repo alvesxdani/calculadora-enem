@@ -1,4 +1,4 @@
-const Tables = (simulado) => {
+const TablesNotes = (simulado) => {
     return (
         <>
         <table className="border table-fixed w-[100%] mb-8 bg-[#eee3]">
@@ -50,4 +50,4 @@ const Tables = (simulado) => {
 }
 
 
-export default Tables
+export default TablesNotes

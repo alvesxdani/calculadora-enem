@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import Header from "./components/Header/Header";
 import fetchData, { fetchDataCourses } from "./api/api";
-import Tables from "./components/Tables/Tables";
 import CoursesTable from "./components/CoursesTable/CoursesTable";
+import TablesNotes from "./components/TablesNotes/TablesNotes";
 
 function App() {
   const [data, setData] = useState([]);
@@ -17,6 +17,7 @@ function App() {
   const [simulado6, setSimulado6] = useState({});
   const [loadingData, setLoadingData] = useState(false);
   const [loadingCourses, setLoadingCourses] = useState(false);
+  let courses = []
 
   useEffect(() => {
     setLoadingData(true);
@@ -41,7 +42,13 @@ function App() {
       });
   }, []);
   
-  const courses = dataCourses.map(item => item['CURSO'])
+  dataCourses.map(item => {
+    if(courses.includes(item['curso']) === false) {
+      courses.push(item['curso'])
+    }
+  })
+
+  courses = courses.sort()
 
   function handleInfoAluno(value) {
     data[0].filter((item) => {
@@ -163,13 +170,9 @@ function App() {
                   id="course"
                   className="border rounded-sm p-1 grow"
                 >
-
-                  {/* {dataCourses.map((item, index) => (
-                    <option key={index} value={item['CURSO']}>{item['CURSO']}</option>
-                  ))} */}
-
-                  
-                  
+                  {courses.map((item, index) => (
+                    <option key={index}>{item}</option>
+                  ))}
                 </select>
               )}
               
@@ -177,12 +180,12 @@ function App() {
           </div>
 
           <div className="w-[50%] pr-3">
-            <Tables {...simulado1} num={1} />
-            <Tables {...simulado2} num={2} />
-            <Tables {...simulado3} num={3} />
-            <Tables {...simulado4} num={4} />
-            <Tables {...simulado5} num={5} />
-            <Tables {...simulado6} num={6} />
+            <TablesNotes {...simulado1} num={1} />
+            <TablesNotes {...simulado2} num={2} />
+            <TablesNotes {...simulado3} num={3} />
+            <TablesNotes {...simulado4} num={4} />
+            <TablesNotes {...simulado5} num={5} />
+            <TablesNotes {...simulado6} num={6} />
           </div>
 
           <div className="w-[50%]">
