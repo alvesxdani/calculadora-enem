@@ -24,6 +24,14 @@ const ResumeNotes = (media) => {
           <td>{media.cn || 0}</td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+            <td colSpan={4} align="center" style={{paddingLeft: '1rem'}}>
+                <strong>Média total: </strong>
+                {0 || parseFloat(media.ling + media.mat + media.ch + media.cn).toFixed(1)}
+            </td>
+        </tr>
+      </tfoot>
     </table>
   );
 };

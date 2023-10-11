@@ -130,7 +130,7 @@ function App() {
       ling: Number((simulado1['ling'] + simulado2['ling'] + simulado3['ling'] + simulado4['ling'] + simulado5['ling'] + simulado6['ling']) / 4).toFixed(1),
       mat: Number((simulado1['mat'] + simulado2['mat'] + simulado3['mat'] + simulado4['mat'] + simulado5['mat'] + simulado6['mat']) / 4).toFixed(1),
       ch: Number((simulado1['ch'] + simulado2['ch'] + simulado3['ch'] + simulado4['ch'] + simulado5['ch'] + simulado6['ch']) / 4).toFixed(1),
-      cn: Number((simulado1['cn'] + simulado2['cn'] + simulado3['cn'] + simulado4['cn'] + simulado5['cn'] + simulado6['cn']) / 4).toFixed(1),
+      cn: Number((simulado1['cn'] + simulado2['cn'] + simulado3['cn'] + simulado4['cn'] + simulado5['cn'] + simulado6['cn']) / 4).toFixed(1)
     })
   }
 
@@ -145,7 +145,6 @@ function App() {
       nota: item.notasCorte.toFixed(1)
       }])
     })
-    console.log(course)
   }
 
   return (
