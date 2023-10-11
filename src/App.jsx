@@ -141,7 +141,7 @@ function App() {
       <Header ano={2023} />
 
       <main className="p-2">
-        <div className="container flex flex-wrap max-w-[1064px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey">
+        <div className="container flex flex-wrap max-w-[1064px] my-0 mx-auto border border-[#eee] rounded-sm p-3 text-dark-grey max-sm:flex-col">
           <div className="flex flex-col gap-3 justify-around mb-4 align-middle w-[100%]">
             <div className="flex gap-3 align-middle">
               <label htmlFor="name" className="font-bold">
@@ -153,7 +153,7 @@ function App() {
               ) : (
                 <select
                   id="name"
-                  className="border rounded-sm p-1 grow"
+                  className="border rounded-sm p-1 grow w-[100%]"
                   onChange={({ target }) => handleInfoAluno(target.value)}
                 >
                   <option id="name" value={''}></option>
@@ -194,7 +194,7 @@ function App() {
             </div>
           </div>
 
-          <div className="w-[50%] pr-3">
+          <div className="w-[50%] pr-3 max-sm:w-[100%]">
             <TablesNotes {...simulado1} num={1} />
             <TablesNotes {...simulado2} num={2} />
             <TablesNotes {...simulado3} num={3} />
@@ -203,7 +203,7 @@ function App() {
             <TablesNotes {...simulado6} num={6} />
           </div>
 
-          <div className="w-[50%]">
+          <div className="w-[50%] max-sm:w-[100%]">
             <CoursesTable course={course}/>
           </div>
         </div>
