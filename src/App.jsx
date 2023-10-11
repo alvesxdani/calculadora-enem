@@ -126,15 +126,14 @@ function App() {
   }
 
   function handleCourse(value) {
+    setCourse([])
     dataCourses.filter((item) => {
-      item['curso'] === value
-        ? setCourse(prev => [...prev,{
-          ies: item.ies,
-          nota: item.notasCorte.toFixed(1)
-        }]) : null
+      if(item['curso'] === value)
+       setCourse(prev => [...prev, {
+      ies: item.ies,
+      nota: item.notasCorte.toFixed(1)
+      }])
     })
-
-    
   }
 
   return (
@@ -157,6 +156,7 @@ function App() {
                   className="border rounded-sm p-1 grow"
                   onChange={({ target }) => handleInfoAluno(target.value)}
                 >
+                  <option id="name" value={''}></option>
                   {data[0] &&
                     data[0].map((item, index) => {
                       return (
@@ -181,9 +181,10 @@ function App() {
               ) : (
                 <select
                   id="course"
-                  className="border rounded-sm p-1 grow"
+                  className="border rounded-sm p-1 w-[100%]"
                   onChange={({target}) => handleCourse(target.value)}
                 >
+                  <option id="name" value={''}></option>
                   {courses.map((item, index) => (
                     <option key={index}>{item}</option>
                   ))}
