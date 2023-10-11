@@ -6,7 +6,7 @@ const Header = ({ ano }) => {
             <div className='flex justify-center w-[80%]'>
                 
                 <a href="/">
-                    <h1 className='font-bold font-montserrat text-xl'>Calculadora Enem {ano}</h1>
+                    <h1 className='font-bold font-montserrat text-xl no-underline'>Calculadora Enem {ano}</h1>
                 </a>
                 {/* <nav>
                     <ul>
