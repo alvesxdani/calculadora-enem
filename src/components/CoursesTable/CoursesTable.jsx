@@ -16,7 +16,7 @@ const CoursesTable = ({ course }) => {
             <strong>Ano</strong>
           </td>
           <td>
-            <strong>Instituição: </strong>
+            <strong>IES: </strong>
           </td>
           <td>
             <strong>Nota: </strong>
@@ -25,7 +25,7 @@ const CoursesTable = ({ course }) => {
         {course && course.map((item, index) => (
           <tr key={index}>
             <td>{item.ano}</td>
-            <td title={item.campus}>{item.ies}</td>
+            <td title={`Grau: ${item.grau} - Campus: ${item.campus}`}>{item.ies}</td>
             <td>{item.nota}</td>
           </tr>
         ))}

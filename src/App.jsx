@@ -11,16 +11,16 @@ function App() {
   const [course, setCourse] = useState([]);
   const [dataCourses, setDataCourses] = useState([]);
   const [turma, setTurma] = useState(null);
-  const [simulado1, setSimulado1] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [simulado2, setSimulado2] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [simulado3, setSimulado3] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [simulado4, setSimulado4] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [simulado5, setSimulado5] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [simulado6, setSimulado6] = useState({ling: 0, mat: 0, ch: 0, cn: 0});
-  const [media, setMedia] = useState({})
+  const [simulado1, setSimulado1] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [simulado2, setSimulado2] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [simulado3, setSimulado3] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [simulado4, setSimulado4] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [simulado5, setSimulado5] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [simulado6, setSimulado6] = useState({ ling: 0, mat: 0, ch: 0, cn: 0 });
+  const [media, setMedia] = useState({});
   const [loadingData, setLoadingData] = useState(false);
   const [loadingCourses, setLoadingCourses] = useState(false);
-  let courses = []
+  let courses = [];
 
   useEffect(() => {
     setLoadingData(true);
@@ -44,18 +44,18 @@ function App() {
         setLoadingCourses(false);
       });
   }, []);
-  
-  dataCourses.map(item => {
-    if(courses.includes(item['curso']) === false) {
-      courses.push(item['curso'])
+
+  dataCourses.map((item) => {
+    if (courses.includes(item["curso"]) === false) {
+      courses.push(`${item["curso"]}`);
     }
-  })
+  });
 
-  courses = courses.sort()
+  courses = courses.sort();
 
-  function handleInfoAluno(value) {
+  function handleInfoAluno({ target }) {
     data[0].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado1({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -67,7 +67,7 @@ function App() {
     });
 
     data[1].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado2({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -79,7 +79,7 @@ function App() {
     });
 
     data[2].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado3({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -91,7 +91,7 @@ function App() {
     });
 
     data[3].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado4({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -103,7 +103,7 @@ function App() {
     });
 
     data[4].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado5({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -115,7 +115,7 @@ function App() {
     });
 
     data[5].filter((item) => {
-      item.nome === value
+      item.nome === target.value
         ? setSimulado6({
             turma: setTurma(item.turma),
             ling: Number(item.ling.toFixed(1)),
@@ -127,24 +127,62 @@ function App() {
     });
 
     setMedia({
-      ling: Number((simulado1['ling'] + simulado2['ling'] + simulado3['ling'] + simulado4['ling'] + simulado5['ling'] + simulado6['ling']) / 5).toFixed(1),
-      mat: Number((simulado1['mat'] + simulado2['mat'] + simulado3['mat'] + simulado4['mat'] + simulado5['mat'] + simulado6['mat']) / 5).toFixed(1),
-      ch: Number((simulado1['ch'] + simulado2['ch'] + simulado3['ch'] + simulado4['ch'] + simulado5['ch'] + simulado6['ch']) / 5).toFixed(1),
-      cn: Number((simulado1['cn'] + simulado2['cn'] + simulado3['cn'] + simulado4['cn'] + simulado5['cn'] + simulado6['cn']) / 5).toFixed(1)
-    })
+      ling: Number(
+        (simulado1.ling +
+          simulado2.ling +
+          simulado3.ling +
+          simulado4.ling +
+          simulado5.ling +
+          simulado6.ling) /
+          5
+      ).toFixed(1),
+      mat: Number(
+        (simulado1.mat +
+          simulado2.mat +
+          simulado3.mat +
+          simulado4.mat +
+          simulado5.mat +
+          simulado6.mat) /
+          5
+      ).toFixed(1),
+      ch: Number(
+        (simulado1.ch +
+          simulado2.ch +
+          simulado3.ch +
+          simulado4.ch +
+          simulado5.ch +
+          simulado6.ch) /
+          5
+      ).toFixed(1),
+      cn: Number(
+        (simulado1.cn +
+          simulado2.cn +
+          simulado3.cn +
+          simulado4.cn +
+          simulado5.cn +
+          simulado6.cn) /
+          5
+      ).toFixed(1),
+    });
   }
 
-  function handleCourse(value) {
-    setCourse([])
+  console.log(simulado1.ling);
+
+  function handleCourse({ target }) {
+    setCourse([]);
     dataCourses.filter((item) => {
-      if(item['curso'] === value)
-       setCourse(prev => [...prev, {
-      ano: item.ano,
-      ies: item.ies,
-      campus: item.campus,
-      nota: item.notasCorte.toFixed(1)
-      }])
-    })
+      if (item["curso"] === target.value)
+        setCourse((prev) => [
+          ...prev,
+          {
+            ano: item.ano,
+            ies: item.ies,
+            campus: item.campus,
+            grau: item.tipoGrau,
+            nota: item.notasCorte.toFixed(1),
+          },
+        ]);
+    });
   }
 
   return (
@@ -165,9 +203,9 @@ function App() {
                 <select
                   id="name"
                   className="border rounded-sm p-1 grow w-[80%] "
-                  onChange={({ target }) => handleInfoAluno(target.value)}
+                  onChange={handleInfoAluno}
                 >
-                  <option id="name" value={''}></option>
+                  <option id="name" value={""}></option>
                   {data[0] &&
                     data[0].map((item, index) => {
                       return (
@@ -193,20 +231,19 @@ function App() {
                 <select
                   id="course"
                   className="border rounded-sm p-1 w-[100%]"
-                  onChange={({target}) => handleCourse(target.value)}
+                  onChange={handleCourse}
                 >
-                  <option id="name" value={''}></option>
+                  <option id="name" value={""}></option>
                   {courses.map((item, index) => (
                     <option key={index}>{item}</option>
                   ))}
                 </select>
               )}
-              
             </div>
           </div>
 
           <div className="w-[100%] pb-10 pt-10">
-            <ResumeNotes {...media}/>
+            <ResumeNotes {...media} />
           </div>
 
           <div className="w-[50%] pr-3 max-sm:w-[100%]">
@@ -219,7 +256,7 @@ function App() {
           </div>
 
           <div className="w-[50%] max-sm:w-[100%]">
-            <CoursesTable course={course}/>
+            <CoursesTable course={course} />
           </div>
         </div>
       </main>
