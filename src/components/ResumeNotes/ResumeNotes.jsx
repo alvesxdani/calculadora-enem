@@ -27,10 +27,10 @@ const ResumeNotes = (media) => {
 
       <tbody>
         <tr>
-          <td>{media ? media.ling : 0}</td>
-          <td>{media ? media.mat : 0}</td>
-          <td>{media ? media.ch : 0}</td>
-          <td>{media ? media.cn : 0}</td>
+          <td>{mediaTotal > 0 ? media.ling : 0}</td>
+          <td>{mediaTotal > 0 ? media.mat : 0}</td>
+          <td>{mediaTotal > 0 ? media.ch : 0}</td>
+          <td>{mediaTotal > 0 ? media.cn : 0}</td>
         </tr>
       </tbody>
       <tfoot>
