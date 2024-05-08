@@ -1,5 +1,13 @@
 const ResumeNotes = (media) => {
-  const mediaTotal = Number((media.ling + media.mat + media.ch + media.cn) / 5)
+  const notas = {
+    ling: Number(media.ling),
+    mat: Number(media.mat),
+    ch: Number(media.ch),
+    cn: Number(media.cn),
+  }
+  const soma = notas.ling + notas.mat + notas.ch + notas.cn
+  const mediaTotal = Number(soma / 5).toFixed(1)
+  console.log(notas)
     
   return (
     <table className="w-[100%] table-fixed">
