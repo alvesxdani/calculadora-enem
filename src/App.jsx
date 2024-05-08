@@ -166,8 +166,6 @@ function App() {
     });
   }
 
-  console.log(simulado1.ling);
-
   function handleCourse({ target }) {
     setCourse([]);
     dataCourses.filter((item) => {
