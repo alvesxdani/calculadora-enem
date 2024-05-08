@@ -37,7 +37,7 @@ const ResumeNotes = (media) => {
         <tr>
             <td colSpan={4} align="center" style={{paddingLeft: '1rem'}}>
                 <strong>Média total: </strong>
-                {media ? mediaTotal : 0}
+                {mediaTotal > 0 ? mediaTotal : 0}
             </td>
         </tr>
       </tfoot>
